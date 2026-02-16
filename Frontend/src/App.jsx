@@ -15,13 +15,20 @@ function App() {
   
   return (
     <>
-    <div className="content min-h-screen bg-gradient-to-br from-yellow-100 via-yellow-50 to-white p-6">
+   <div className="content min-h-screen bg-gradient-to-br from-yellow-100 via-yellow-50 to-white p-6">
+  
+  <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-10 
+                 bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-600 
+                 bg-clip-text text-transparent drop-shadow-sm tracking-wider">
+    Pokédex
+  </h1>
+
   <div className="search flex justify-center mb-10">
     <div className="flex w-full max-w-xl bg-white shadow-lg rounded-full overflow-hidden border-2 border-yellow-400">
       <input 
         type="text" 
         placeholder='Search here...' 
-        className="flex-1 px-5 py-3 outline-none text-gray-700 placeholder-gray-400"
+        className="flex-1 px-5 py-3 outline-none text-gray-700 placeholder-gray-400 font-medium"
       />
       <button className="bg-yellow-400 hover:bg-yellow-500 transition-all duration-300 px-6 font-semibold text-black">
         Search
@@ -46,12 +53,12 @@ function App() {
               />
             </div>
 
-            <p className="capitalize font-bold text-lg text-gray-800 tracking-wide">
+            <p className="capitalize font-bold text-lg text-gray-800 tracking-wide font-sans">
               {p.name}
             </p>
 
-            <p className="text-sm text-gray-500 mt-1">
-              00{id}
+            <p className="text-sm text-gray-500 mt-1 font-medium">
+              #{id}
             </p>
           </div>
         )
@@ -59,6 +66,7 @@ function App() {
     </div>
   </div>
 </div>
+
  
     </>
   )
