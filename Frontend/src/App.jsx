@@ -15,27 +15,51 @@ function App() {
   
   return (
     <>
-      <div className="content">
-        <div className="search">
-          <input type="text" placeholder='Search here...' />
-          <button>Search</button>
-        </div>
-        <div className="cards">
-          <div className="card flex flex-col top-50">
-             {List.map((p)=>{
-              console.log(p.url)
-              const id=p.url.split("/").filter(Boolean).pop();
-              console.log(id)
-              return (
-              <div key={p.name}>
-              <p>{p.name}</p>
-              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt="" />
-              </div>
-)
-})}
+    <div className="content min-h-screen bg-gradient-to-br from-yellow-100 via-yellow-50 to-white p-6">
+  <div className="search flex justify-center mb-10">
+    <div className="flex w-full max-w-xl bg-white shadow-lg rounded-full overflow-hidden border-2 border-yellow-400">
+      <input 
+        type="text" 
+        placeholder='Search here...' 
+        className="flex-1 px-5 py-3 outline-none text-gray-700 placeholder-gray-400"
+      />
+      <button className="bg-yellow-400 hover:bg-yellow-500 transition-all duration-300 px-6 font-semibold text-black">
+        Search
+      </button>
+    </div>
+  </div>
+
+  <div className="cards">
+    <div className="card grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {List.map((p)=>{
+        const id=p.url.split("/").filter(Boolean).pop();
+        return (
+          <div 
+            key={p.name}
+            className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 p-5 flex flex-col items-center text-center border border-yellow-200"
+          >
+            <div className="bg-yellow-100 rounded-full p-4 mb-4 group-hover:bg-yellow-200 transition">
+              <img 
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} 
+                alt="" 
+                className="w-24 h-24 object-contain drop-shadow-lg"
+              />
+            </div>
+
+            <p className="capitalize font-bold text-lg text-gray-800 tracking-wide">
+              {p.name}
+            </p>
+
+            <p className="text-sm text-gray-500 mt-1">
+              00{id}
+            </p>
           </div>
-        </div>
-      </div>
+        )
+      })}
+    </div>
+  </div>
+</div>
+ 
     </>
   )
 }
