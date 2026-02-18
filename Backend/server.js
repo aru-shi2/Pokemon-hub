@@ -13,6 +13,14 @@ app.get('/', async(req, res) => {
   })
 })
 
+app.get('/info/:id', async(req, res) => {
+  const id=req.params.id;
+  const a=await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  res.json({
+    "msg":a.data
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

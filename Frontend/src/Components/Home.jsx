@@ -1,19 +1,25 @@
 import React from 'react'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
+import { useNavigate} from 'react-router-dom'
 
 const Home = () => {
+  const navigate=useNavigate();
 
 const [List, setList] = useState([])
 
   async function fetchdata() {
-    const res=await axios.get("http://localhost:3000/");
+    const res=await axios.get(`http://localhost:3000/`);
     console.log(res.data.msg.results)
     setList(res.data.msg.results)
   }
   useEffect(() => {
    fetchdata();
   },[])
+
+  function click(id) {
+    navigate(`/info/${id}`)
+  }
 
   return (
     <div>
@@ -43,7 +49,7 @@ const [List, setList] = useState([])
       {List.map((p)=>{
         const id=p.url.split("/").filter(Boolean).pop();
         return (
-          <div 
+          <div onClick={()=>click(id)}
             key={p.name}
             className="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 p-5 flex flex-col items-center text-center border border-yellow-200"
           >
