@@ -11,8 +11,11 @@ const Statsbar = ({progress}) => {
     
 
   return (
-    <div className="outer border w-full overflow-hidden">
-        <div style={{transform:`translateX(${p-100}%)`}} className="inner h-full bg-amber-300 transition-all duration-500 ease-in">
+    <div className="outer w-full h-2 md:h-4 lg:h-5 border border-amber-500 rounded-full overflow-hidden bg-yellow-50">
+        <div 
+          style={{transform:`translateX(${p-100}%)`}} 
+          className="inner h-full bg-amber-200 transition-all duration-500 ease-in"
+        >
         </div>
     </div>
   )
