@@ -9,7 +9,7 @@ const Home = () => {
 const [List, setList] = useState([])
 
   async function fetchdata() {
-    const res=await axios.get(`http://localhost:3000/`);
+    const res=await axios.get(`https://api-pokedex-qhm5.onrender.com`);
     console.log(res.data.msg.results)
     setList(res.data.msg.results)
   }

@@ -9,7 +9,7 @@ const Info = () => {
 
   const [Data, setData] = useState(null)
   async function fetchdata() {
-    const res=await axios.get(`http://localhost:3000/info/${id}`);
+    const res=await axios.get(`https://api-pokedex-qhm5.onrender.com/info/${id}`);
     setData(res.data.msg)
   }
   useEffect(() => { fetchdata(); },[id])
