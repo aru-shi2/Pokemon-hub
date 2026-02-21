@@ -62,7 +62,7 @@ const [New, setNew] = useState([])
     <div className="flex w-full max-w-xl bg-white shadow-lg rounded-full overflow-hidden border-2 border-yellow-400">
       <input 
       value={Input}
-      onChange={()=>setInput(e.target.value)}
+      onChange={(e)=>setInput(e.target.value)}
         type="text" 
         placeholder='Search here...' 
         className="flex-1 px-5 py-3 outline-none text-gray-700 placeholder-gray-400 font-medium"
