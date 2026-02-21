@@ -36,17 +36,21 @@ const [New, setNew] = useState([])
 
   async function search() {
     const res=await axios.get(`https://api-pokedex-qhm5.onrender.com/pokemon?search=${Input}`);
-    console.log(res.data.msg.results)
-    setNew(res.data.msg.results)
+    setNew(res.data.msg)
   }
 
   useEffect(() => {
     if(Input.length>0){
     search()
     }
+    else{
+    setNew([])
+    }
   }, [Input])
   
-  const listrender=Input?.length>0?New:Next.length>0?Next:List
+  const listrender=Input.length>0?New:
+  Next.length>0?Next:
+  List
 
   return (
     <div>

@@ -31,9 +31,9 @@ app.get('/next', async(req, res) => {
 app.get('/pokemon', async(req, res) => {
   const s=req.query.search?.toLowerCase()
   const rk=await axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=40")
-  rk.data.results.filter((i)=> i.name.includes(s))
+  const filter=rk.data.results.filter((i)=> i.name.toLowerCase().includes(s))
   res.json({
-    "msg":rk.data
+    "msg":filter
   })
 })
 
