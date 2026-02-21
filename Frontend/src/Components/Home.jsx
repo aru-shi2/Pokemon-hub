@@ -8,6 +8,8 @@ const Home = () => {
 
 const [List, setList] = useState([])
 const [Next, setNext] = useState([])
+const [Input, setInput] = useState("")
+const [New, setNew] = useState([])
 
   async function fetchdata() {
     const res=await axios.get(`https://api-pokedex-qhm5.onrender.com`);
@@ -29,10 +31,22 @@ const [Next, setNext] = useState([])
   }
 
   async function prev(){
-    fetchdata();
+    setNext([]);
   }
 
-  const listrender=Next.length>0?Next:List
+  async function search() {
+    const res=await axios.get(`https://api-pokedex-qhm5.onrender.com/pokemon?search=${Input}`);
+    console.log(res.data.msg.results)
+    setNew(res.data.msg.results)
+  }
+
+  useEffect(() => {
+    if(Input.length>0){
+    search()
+    }
+  }, [Input])
+  
+  const listrender=Input?.length>0?New:Next.length>0?Next:List
 
   return (
     <div>
@@ -47,6 +61,8 @@ const [Next, setNext] = useState([])
   <div className="search flex justify-center mb-10">
     <div className="flex w-full max-w-xl bg-white shadow-lg rounded-full overflow-hidden border-2 border-yellow-400">
       <input 
+      value={Input}
+      onChange={()=>setInput(e.target.value)}
         type="text" 
         placeholder='Search here...' 
         className="flex-1 px-5 py-3 outline-none text-gray-700 placeholder-gray-400 font-medium"

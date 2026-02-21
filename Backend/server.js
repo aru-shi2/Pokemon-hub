@@ -28,6 +28,15 @@ app.get('/next', async(req, res) => {
   })
 })
 
+app.get('/pokemon', async(req, res) => {
+  const s=req.query.search?.toLowerCase()
+  const rk=await axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=40")
+  rk.data.results.filter((i)=> i.name.includes(s))
+  res.json({
+    "msg":rk.data
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
