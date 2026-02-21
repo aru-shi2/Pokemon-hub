@@ -7,6 +7,7 @@ const Home = () => {
   const navigate=useNavigate();
 
 const [List, setList] = useState([])
+const [Next, setNext] = useState([])
 
   async function fetchdata() {
     const res=await axios.get(`https://api-pokedex-qhm5.onrender.com`);
@@ -20,6 +21,18 @@ const [List, setList] = useState([])
   function click(id) {
     navigate(`/info/${id}`)
   }
+
+  async function next() {
+    const res=await axios.get(`https://api-pokedex-qhm5.onrender.com/next`);
+    console.log(res.data.msg.results)
+    setNext(res.data.msg.results)
+  }
+
+  async function prev(){
+    fetchdata();
+  }
+
+  const listrender=Next.length>0?Next:List
 
   return (
     <div>
@@ -46,7 +59,7 @@ const [List, setList] = useState([])
 
   <div className="cards">
     <div className="card grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {List.map((p)=>{
+       {listrender.map((p)=>{
         const id=p.url.split("/").filter(Boolean).pop();
         return (
           <div onClick={()=>click(id)}
@@ -74,8 +87,10 @@ const [List, setList] = useState([])
     </div>
   </div>
 </div>
-
- 
+<div className="btns flex justify-between p-6">
+<button onClick={prev} className='className="bg-yellow-400 hover:bg-yellow-500 transition-all duration-300 px-6 font-semibold text-black bg-amber-200 h-13 rounded-2xl'>Previous</button>
+<button onClick={next} className='className="bg-yellow-400 hover:bg-yellow-500 transition-all duration-300 px-6 font-semibold text-black bg-amber-200 h-13 rounded-2xl'>Next</button>
+</div>
     </div>
   )
 }
