@@ -10,13 +10,17 @@ const [List, setList] = useState([])
 const [Next, setNext] = useState([])
 const [Input, setInput] = useState("")
 const [New, setNew] = useState([])
+const [Loading, setLoading] = useState(true);
 
   async function fetchdata() {
+    setLoading(true)
     const res=await axios.get(`https://api-pokedex-qhm5.onrender.com`);
     console.log(res.data.msg.results)
     setList(res.data.msg.results)
+    setLoading(false)
   }
   useEffect(() => {
+
    fetchdata();
   },[])
 
@@ -79,7 +83,8 @@ const [New, setNew] = useState([])
 
   <div className="cards">
     <div className="card grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-       {listrender.map((p)=>{
+      {Loading && <div className="absolute flex justify-center items-center w-full text-xl font-medium text-yellow-700"><p>Loading...</p></div>}
+      {!Loading && listrender.map((p)=>{
         const id=p.url.split("/").filter(Boolean).pop();
         return (
           <div onClick={()=>click(id)}
