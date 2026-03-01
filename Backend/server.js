@@ -6,6 +6,10 @@ const port = 3000
 
 app.use(cors());
 
+app.get('/health',(req,res)=>{
+  res.status(200).send("ok")
+})
+
 app.get('/', async(req, res) => {
   const r=await axios.get("https://pokeapi.co/api/v2/pokemon?offset=0")
   res.json({
